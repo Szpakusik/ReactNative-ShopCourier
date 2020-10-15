@@ -8,7 +8,7 @@ const screens = {
         screen: Home,
         navigationOptions:({navigation}) => {
             return {
-                headerTitle: () => <Header navigation={navigation} title="Z-Dowozem Kurier"/>,
+                headerTitle: () => <Header navigation={navigation} title="Login"/>,
             }
         }
     },
