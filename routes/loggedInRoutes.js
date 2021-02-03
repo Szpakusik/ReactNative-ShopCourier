@@ -6,21 +6,18 @@ import React from 'react';
 
 const Stack = createDrawerNavigator();
 
-const RootDrawNavigator = () => {
+const LoggedOutDrawNavigator = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator
-            initialRouteName="Logged"
-            screenOptions={{ gestureEnabled: true }}
-            >
+            <Stack.Navigator>
                 <Stack.Screen
-                name="Logged"
-                component={Logged}
-                options={{ title: 'Home' }}
+                    name="Logged"
+                    component={Logged}
+                    options={{headerShown: true}}
                 />
             </Stack.Navigator>
         </NavigationContainer>
       );
 }
 
-export default RootDrawNavigator 
+export default LoggedOutDrawNavigator 

@@ -7,14 +7,11 @@ const Stack = createStackNavigator();
 
 const HomeStack = () => {
     return (
-    <Stack.Navigator
-      initialRouteName="Home"
-      screenOptions={{ gestureEnabled: false }}
-    >
+    <Stack.Navigator>
         <Stack.Screen
             name="Home"
             component={Home}
-            options={{ title: () => <Header navigation={navigation} title="Login"/> }}
+            options={{headerShown: true}}
         />
     </Stack.Navigator>
   );
