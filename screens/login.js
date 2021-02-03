@@ -1,24 +1,26 @@
 import React, {useState} from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { connect } from 'react-redux';
 import { globalStyles } from '../styles/global'
 import {Formik} from 'formik'
 import * as yup from 'yup'
 import { TextInput } from 'react-native-gesture-handler'
 import FlatButton from '../shared/button'
+import * as LoginActions from '../actions/loginActions'
 
 const ReviewSchema = yup.object({
     login: yup.string().required().min(4),
     password: yup.string().required().min(4),
 })
 
-export default function Login( { handleLogin } ) {
+const Login = function( { loginAction } ) {
 
     return(
         <View style={globalStyles.container}>
             <Formik initialValues={{login:"", password:""}}
                 validationSchema={ReviewSchema}
                 onSubmit={()=>{
-                    handleLogin(true);
+                    loginAction(true);
                 }
             }>
                 { (formikProps)=>(
@@ -44,6 +46,8 @@ export default function Login( { handleLogin } ) {
         </View>
     )
 }
+
+export default connect(null, LoginActions)(Login);
 
 const styles = StyleSheet.create({
 

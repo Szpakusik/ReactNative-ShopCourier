@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { connect } from 'react-redux';
 import { View, Text, StyleSheet } from 'react-native'
 import { globalStyles } from '../styles/global'
 import {Formik} from 'formik'
@@ -6,6 +7,7 @@ import * as yup from 'yup'
 import { TextInput } from 'react-native-gesture-handler'
 import FlatButton from '../shared/button'
 import Login from './login'
+import Navigator from '../routes/drawer'
 
 
 const ReviewSchema = yup.object({
@@ -18,23 +20,15 @@ const ReviewSchema = yup.object({
 
 
 
-export default function Home( { navigation } ) {
-
-    const [isLogged, setIsLogged] = useState( false );
+function Home( { navigation, isLogged } ) {
 
     const handleLogin = ( bLogin ) => {
         setIsLogged( true )
     }
-    const handleLogout = () => {
-        setIsLogged( false )
-    }
 
     if ( isLogged ) {
         return(
-            <View style={globalStyles.container}>
-                <Text>You are logged!</Text>
-                <FlatButton text="Wyloguj" onPress={handleLogout}/>
-            </View>
+            <Navigator />
         )
     } else {
         return(
@@ -42,6 +36,15 @@ export default function Home( { navigation } ) {
         )
     }
 }
+
+
+const mapStateToProps = (state) => {
+    return{
+        isLogged: state.loginReducer.isLogged,
+    }
+}
+
+export default connect(mapStateToProps)(Home);
 
 const styles = StyleSheet.create({
 
