@@ -10,7 +10,9 @@ const LoginComponent = function( { LoginActions, ReviewSchema } ) {
         <View style={globalStyles.container}>
             <Formik initialValues={{login:"", password:""}}
                 validationSchema={ReviewSchema}
-                onSubmit={()=>{ LoginActions.loginAction(true);}}>
+                onSubmit={( values )=>{ 
+                    LoginActions.loginAction( true, values);
+                }}>
 
                 { (formikProps)=>(
                     <View>
@@ -27,7 +29,7 @@ const LoginComponent = function( { LoginActions, ReviewSchema } ) {
                                     onChangeText={formikProps.handleChange('password')}
                                     onBlur={formikProps.handleBlur('password')}
                                     value={formikProps.values.password}/>
-                                    
+
                         <Text style={globalStyles.errorText}>{formikProps.touched.password && formikProps.errors.password}</Text>
 
                         <FlatButton text="Zaloguj" onPress={formikProps.handleSubmit}/>
